@@ -15,18 +15,31 @@ public class NerpBot {
     printDivider();
 
     while (true) {
-      String task = scanner.nextLine();
+      String command = scanner.nextLine();
+      String[] words = command.split(" ");
 
-      if (task.equals("bye")) {
+      if (command.equals("bye")) {
         printDivider();
         System.out.println("Bye. Hope to see you again soon!");
         printDivider();
         break;
-      } else if (task.equals("list")) {
+      } else if (command.equals("list")) {
         printDivider();
         taskList.listTasks();
         printDivider();
+      } else if (words[0].equals("mark")){
+        printDivider();
+        int idx = Integer.parseInt(words[1]) - 1;
+        taskList.markTask(idx);
+        printDivider();
+      } else if (words[0].equals("unmark")){
+        printDivider();
+        int idx = Integer.parseInt(words[1]) - 1;
+        taskList.unmarkTask(idx);
+        printDivider();
       } else {
+        Task task = new Task(command);
+
         printDivider();
         taskList.addTask(task);
         printDivider();
