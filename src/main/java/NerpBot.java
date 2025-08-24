@@ -18,44 +18,53 @@ public class NerpBot {
       String command = scanner.nextLine();
       String[] words = command.split(" ", 2);
 
-      if (command.equals("bye")) {
+      try {
+        if (command.equals("bye")) {
+          printDivider();
+          System.out.println("Bye. Hope to see you again soon!");
+          printDivider();
+          break;
+        } else if (command.equals("list")) {
+          printDivider();
+          taskList.listTasks();
+          printDivider();
+        } else if (words[0].equals("mark")) {
+          printDivider();
+          int idx = Integer.parseInt(words[1]) - 1;
+          taskList.markTask(idx);
+          printDivider();
+        } else if (words[0].equals("unmark")) {
+          printDivider();
+          int idx = Integer.parseInt(words[1]) - 1;
+          taskList.unmarkTask(idx);
+          printDivider();
+        } else if (words[0].equals("todo")) {
+          if (words.length < 2 || words[1].isBlank()) {
+            throw new NerpBotException("you didn't provide a description for the todo.");
+          }
+          printDivider();
+          taskList.addTask(new ToDo(words[1]));
+          printDivider();
+        } else if (words[0].equals("deadline")) {
+          printDivider();
+          String[] parts = words[1].split(" /by ", 2);
+          taskList.addTask(new Deadline(parts[0], parts[1]));
+          printDivider();
+        } else if (words[0].equals("event")) {
+          printDivider();
+          String[] parts = words[1].split(" /from | /to ", 3);
+          taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+          printDivider();
+        } else {
+          throw new NerpBotException("idk what that means.");
+        }
+      } catch (NerpBotException e) {
         printDivider();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(" Damn, " + e.getMessage());
         printDivider();
-        break;
-      } else if (command.equals("list")) {
+      } catch (Exception e) {
         printDivider();
-        taskList.listTasks();
-        printDivider();
-      } else if (words[0].equals("mark")){
-        printDivider();
-        int idx = Integer.parseInt(words[1]) - 1;
-        taskList.markTask(idx);
-        printDivider();
-      } else if (words[0].equals("unmark")){
-        printDivider();
-        int idx = Integer.parseInt(words[1]) - 1;
-        taskList.unmarkTask(idx);
-        printDivider();
-      } else if (words[0].equals("todo")) {
-        printDivider();
-        taskList.addTask(new ToDo(words[1]));
-        printDivider();
-      } else if (words[0].equals("deadline")) {
-        printDivider();
-        String[] parts = words[1].split(" /by ", 2);
-        taskList.addTask(new Deadline(parts[0], parts[1]));
-        printDivider();
-      } else if (words[0].equals("event")) {
-        printDivider();
-        String[] parts = words[1].split(" /from | /to ", 3);
-        taskList.addTask(new Event(parts[0], parts[1], parts[2]));
-        printDivider();
-      } else {
-        Task task = new Task(command);
-
-        printDivider();
-        taskList.addTask(task);
+        System.out.println(" Something went wrong: " + e.getMessage());
         printDivider();
       }
     }
