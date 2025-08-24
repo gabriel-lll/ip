@@ -10,6 +10,13 @@ public class TaskList {
     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
   }
 
+  public void deleteTask(int idx) {
+    Task task = tasks.remove(idx);
+    System.out.println("Noted. I've removed this task:");
+    System.out.println("  " + task);
+    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+  }
+
   public void markTask(int idx) {
     Task task = tasks.get(idx);
     task.markAsDone();

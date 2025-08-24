@@ -55,6 +55,11 @@ public class NerpBot {
           String[] parts = words[1].split(" /from | /to ", 3);
           taskList.addTask(new Event(parts[0], parts[1], parts[2]));
           printDivider();
+        } else if (words[0].equals("delete")) {
+          printDivider();
+          int idx = Integer.parseInt(words[1]) - 1;
+          taskList.deleteTask(idx);
+          printDivider();
         } else {
           throw new NerpBotException("idk what that means.");
         }
