@@ -6,7 +6,7 @@ public class Deadline extends Task {
 
   public Deadline(String description, String by) {
     super(description);
-    this.by = LocalDate.parse(by);
+    this.by = LocalDate.parse(by); // expects date in YYYY-MM-DD format
   }
 
   @Override
