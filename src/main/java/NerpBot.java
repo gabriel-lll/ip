@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class NerpBot {
@@ -7,7 +8,14 @@ public class NerpBot {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    TaskList taskList = new TaskList();
+    Storage storage = new Storage("data/nerpbot.txt");
+    TaskList taskList;
+    try {
+      taskList = new TaskList(storage.load(), storage);
+    } catch (IOException e) {
+      System.out.println("Failed to load tasks: " + e.getMessage());
+      taskList = new TaskList(storage);
+    }
 
     printDivider();
     System.out.println("Hello! I'm NerpBot");
