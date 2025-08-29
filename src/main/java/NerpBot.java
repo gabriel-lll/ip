@@ -56,6 +56,7 @@ public class NerpBot {
         } else if (words[0].equals("deadline")) {
           printDivider();
           String[] parts = words[1].split(" /by ", 2);
+          // Expects parts[1] format to be "YYYY-MM-DD"
           taskList.addTask(new Deadline(parts[0], parts[1]));
           printDivider();
         } else if (words[0].equals("event")) {
