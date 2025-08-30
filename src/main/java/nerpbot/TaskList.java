@@ -19,6 +19,12 @@ public class TaskList {
     this.storage = storage;
   }
 
+  /**
+   * Adds a task to the task list.
+   *
+   * @param task The task to be added.
+   * @throws IOException If saving to storage fails.
+   */
   public void addTask(Task task) throws IOException {
     tasks.add(task);
     System.out.println("Got it. I've added this task:");
@@ -27,6 +33,12 @@ public class TaskList {
     storage.save(tasks);
   }
 
+  /**
+   * Deletes a task from the task list by its index.
+   *
+   * @param idx The index of the task to be deleted (0-based).
+   * @throws IOException If saving to storage fails.
+   */
   public void deleteTask(int idx) throws IOException {
     Task task = tasks.remove(idx);
     System.out.println("Noted. I've removed this task:");
@@ -35,6 +47,12 @@ public class TaskList {
     storage.save(tasks);
   }
 
+  /**
+   * Marks a task as done by its index.
+   *
+   * @param idx The index of the task to be marked (0-based).
+   * @throws IOException If saving to storage fails.
+   */
   public void markTask(int idx) throws IOException {
     Task task = tasks.get(idx);
     task.markAsDone();
