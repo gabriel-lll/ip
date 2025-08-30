@@ -59,4 +59,8 @@ public class TaskList {
       System.out.println((i + 1) + "." + tasks.get(i));
     }
   }
+
+  public ArrayList<Task> getTasks() {
+    return tasks;
+  }
 }
