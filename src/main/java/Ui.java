@@ -14,10 +14,12 @@ public class Ui {
     showLine();
   }
 
+  public void showError(String message) {
+    System.out.println("OOPSIE POOPSIE!!! " + message);
+  }
+
   public void showExit() {
-    showLine();
     System.out.println("Bye. Hope to see you again soon!");
-    showLine();
   }
 
   public String readCommand() {
