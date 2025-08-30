@@ -1,2 +1,4 @@
 T | 1 | borrow book
-D | 0 | return book | Sunday
+D | 1 | return book | 2025-09-01
+D | 0 | slap woman | 2025-08-29
+E | 0 | sleep hard | 2025-10-10 | 2025-10-12
