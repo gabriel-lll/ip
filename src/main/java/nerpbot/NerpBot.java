@@ -70,6 +70,7 @@ public class NerpBot {
           case "event": {
             String[] parts = commandArgs.split(" /from | /to ", 3);
             taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+            break;
           }
           default:
             throw new NerpBotException("idk what that means.");
