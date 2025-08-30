@@ -30,7 +30,7 @@ public class NerpBot {
 
     while (!isExit) {
       try {
-        String fullCommand = ui.readCommand();
+        String fullCommand = ui.readCommand(); // reads the next line
         String commandWord = Parser.getCommandWord(fullCommand);
         String commandArgs = Parser.getCommandArgs(fullCommand);
 
@@ -70,6 +70,13 @@ public class NerpBot {
           case "event": {
             String[] parts = commandArgs.split(" /from | /to ", 3);
             taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+            break;
+          }
+          case "find": {
+            if (commandArgs.isBlank()) {
+              throw new NerpBotException("you didn't provide a keyword to search for.");
+            }
+            taskList.findTasks(commandArgs);
             break;
           }
           default:

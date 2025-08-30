@@ -60,6 +60,20 @@ public class TaskList {
     }
   }
 
+  public void findTasks(String keyword) {
+    System.out.println("Here are the matching tasks in your list:");
+    int count = 1;
+    for (Task task : tasks) {
+      if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+        System.out.println(count + "." + task);
+        count++;
+      }
+    }
+    if (count == 1) {
+      System.out.println("No matching tasks found.");
+    }
+  }
+
   public ArrayList<Task> getTasks() {
     return tasks;
   }
