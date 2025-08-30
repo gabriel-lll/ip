@@ -11,6 +11,11 @@ public class NerpBot {
   private final TaskList taskList;
   private final Ui ui;
 
+  /**
+   * Constructor for NerpBot.
+   *
+   * @param filePath The file path where tasks are stored.
+   */
   public NerpBot(String filePath) {
     this.ui = new Ui();
     this.storage = new Storage(filePath);
@@ -24,6 +29,10 @@ public class NerpBot {
     this.taskList = tempTaskList;
   }
 
+  /**
+   * The main run loop of NerpBot.
+   * It reads user commands and executes them until the user decides to exit.
+   */
   public void run() {
     ui.showWelcome();
     boolean isExit = false;
