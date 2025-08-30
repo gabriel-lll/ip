@@ -6,6 +6,10 @@ import nerpbot.task.ToDo;
 
 import java.io.IOException;
 
+/**
+ * Represents the main chatbot class that handles user interaction,
+ * command parsing, and overall application flow.
+ */
 public class NerpBot {
   private final Storage storage;
   private final TaskList taskList;
@@ -24,6 +28,10 @@ public class NerpBot {
     this.taskList = tempTaskList;
   }
 
+  /**
+   * Starts the chatbot application loop.
+   * Greets the user and continuously processes commands until "bye" is received.
+   */
   public void run() {
     ui.showWelcome();
     boolean isExit = false;

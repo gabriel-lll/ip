@@ -1,5 +1,8 @@
 package nerpbot.task;
 
+/**
+ * Represents a task with a description and completion status.
+ */
 public class Task {
   protected String description;
   protected boolean isDone;
@@ -21,10 +24,21 @@ public class Task {
     isDone = false;
   }
 
+  /**
+   * Converts the task to a string format suitable for saving to a file.
+   *
+   * @return The string representation of the task for saving.
+   */
   public String saveFormat() {
     return (isDone ? "1" : "0") + " | " + description;
   }
 
+  /**
+   * Creates a Task object from a saved string format.
+   *
+   * @param data The saved string representation of the task.
+   * @return The corresponding Task object.
+   */
   public static Task fromSaveFormat(String data) {
     String[] parts = data.split(" \\| ");
     String type = parts[0];

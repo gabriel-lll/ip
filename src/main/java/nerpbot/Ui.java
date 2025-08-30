@@ -2,6 +2,9 @@ package nerpbot;
 
 import java.util.Scanner;
 
+/**
+ * Ui class handles all interactions with the user.
+ */
 public class Ui {
   private final Scanner scanner = new Scanner(System.in);
 
