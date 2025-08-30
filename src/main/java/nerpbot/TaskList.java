@@ -1,3 +1,7 @@
+package nerpbot;
+
+import nerpbot.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

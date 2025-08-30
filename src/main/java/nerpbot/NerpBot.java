@@ -1,5 +1,10 @@
+package nerpbot;
+
+import nerpbot.task.Deadline;
+import nerpbot.task.Event;
+import nerpbot.task.ToDo;
+
 import java.io.IOException;
-import java.util.Scanner;
 
 public class NerpBot {
   private final Storage storage;

@@ -1,3 +1,5 @@
+package nerpbot;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -9,7 +11,7 @@ public class Ui {
 
   public void showWelcome() {
     showLine();
-    System.out.println("Hello! I'm NerpBot");
+    System.out.println("Hello! I'm nerpbot.NerpBot");
     System.out.println("What can I do for you?");
     showLine();
   }

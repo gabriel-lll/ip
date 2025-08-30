@@ -1,3 +1,7 @@
+package nerpbot;
+
+import nerpbot.task.Task;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -9,7 +13,7 @@ public class Storage {
   }
 
   public void save(ArrayList<Task> tasks) throws IOException {
-    // Better to take in ArrayList<Task> as a parameter than TaskList
+    // Better to take in ArrayList<nerpbot.task.Task> as a parameter than nerpbot.TaskList
     // to reduce coupling between classes
     FileWriter fileWriter = new FileWriter(filePath);
     for (Task task : tasks) {
