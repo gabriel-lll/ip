@@ -28,77 +28,61 @@ public class NerpBot {
         this.taskList = tempTaskList;
     }
 
-    public static void main(String[] args) {
-        new NerpBot("data/nerpbot.txt").run();
-    }
-
     /**
-     * Starts the chatbot application loop.
-     * Greets the user and continuously processes commands until "bye" is received.
+     * Processes the user's input and returns the chatbot's response.
+     *
+     * @param input The user's command as a string.
+     * @return The chatbot's response.
      */
-    public void run() {
+    public String getResponse(String input) {
         ui.showWelcome();
-        boolean isExit = false;
 
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand(); // reads the next line
-                String commandWord = Parser.getCommandWord(fullCommand);
-                String commandArgs = Parser.getCommandArgs(fullCommand);
+        try {
+            String commandWord = Parser.getCommandWord(input);
+            String commandArgs = Parser.getCommandArgs(input);
 
-                ui.showLine();
-
-                switch (commandWord) {
-                    case "bye":
-                        ui.showExit();
-                        isExit = true;
-                        break;
-                    case "list":
-                        taskList.listTasks();
-                        break;
-                    case "mark":
-                        int idx = Integer.parseInt(commandArgs) - 1;
-                        taskList.markTask(idx);
-                        break;
-                    case "unmark":
-                        idx = Integer.parseInt(commandArgs) - 1;
-                        taskList.unmarkTask(idx);
-                        break;
-                    case "delete":
-                        idx = Integer.parseInt(commandArgs) - 1;
-                        taskList.deleteTask(idx);
-                        break;
-                    case "todo":
-                        if (commandArgs.isBlank()) {
-                            throw new NerpBotException("you didn't provide a description for the todo.");
-                        }
-                        taskList.addTask(new ToDo(commandArgs));
-                        break;
-                    case "deadline": {
-                        String[] parts = commandArgs.split(" /by ", 2);
-                        taskList.addTask(new Deadline(parts[0], parts[1]));
-                        break;
-                    }
-                    case "event": {
-                        String[] parts = commandArgs.split(" /from | /to ", 3);
-                        taskList.addTask(new Event(parts[0], parts[1], parts[2]));
-                        break;
-                    }
-                    case "find": {
-                        if (commandArgs.isBlank()) {
-                            throw new NerpBotException("you didn't provide a keyword to search for.");
-                        }
-                        taskList.findTasks(commandArgs);
-                        break;
-                    }
-                    default:
-                        throw new NerpBotException("idk what that means.");
+            switch (commandWord) {
+                case "bye":
+                    return ui.showExit();
+                case "list":
+                    return taskList.listTasks();
+                case "mark": {
+                    int idx = Integer.parseInt(commandArgs) - 1;
+                    return taskList.markTask(idx);
                 }
-            } catch (Exception e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+                case "unmark": {
+                    int idx = Integer.parseInt(commandArgs) - 1;
+                    return taskList.unmarkTask(idx);
+                }
+                case "delete": {
+                    int idx = Integer.parseInt(commandArgs) - 1;
+                    return taskList.deleteTask(idx);
+                }
+                case "todo": {
+                    if (commandArgs.isBlank()) {
+                        throw new NerpBotException("you didn't provide a description for the todo.");
+                    }
+                    return taskList.addTask(new ToDo(commandArgs));
+                }
+                case "deadline": {
+                    String[] parts = commandArgs.split(" /by ", 2);
+                    return taskList.addTask(new Deadline(parts[0], parts[1]));
+                }
+                case "event": {
+                    String[] parts = commandArgs.split(" /from | /to ", 3);
+                    return taskList.addTask(new Event(parts[0], parts[1], parts[2]));
+                }
+                case "find": {
+                    if (commandArgs.isBlank()) {
+                        throw new NerpBotException("you didn't provide a keyword to search for.");
+                    }
+                    return taskList.findTasks(commandArgs);
+                }
+                default:
+                    throw new NerpBotException("idk what that means.");
             }
+        } catch (Exception e) {
+            return ui.showError(e.getMessage());
         }
     }
 }
