@@ -26,14 +26,18 @@ public class DialogBox extends HBox {
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(DialogBox.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
+            System.out.println("FXML resource found: " + (DialogBox.class.getResource("/view/DialogBox.fxml") != null));
             fxmlLoader.load();
+            System.out.println("FXML loaded successfully");
+
+            dialog.setText(text);
+            displayPicture.setImage(img);
         } catch (IOException e) {
+            System.err.println("ERROR LOADING DIALOGBOX FXML: " + e.getMessage());
             e.printStackTrace();
         }
-
-        dialog.setText(text);
-        displayPicture.setImage(img);
     }
 
     private void flip() {

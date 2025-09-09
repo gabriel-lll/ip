@@ -1,5 +1,6 @@
 package nerpbot.gui;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import nerpbot.NerpBot;
+import javafx.scene.layout.Region;
 
 /**
  * Controller for the MainWindow. Provides the layout for the other controls.
@@ -29,7 +31,21 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        // Configure ScrollPane to work properly
+        scrollPane.setFitToWidth(true);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        // Allow dialog container to grow
+        dialogContainer.setMinHeight(100);
+        dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.setMaxHeight(Double.MAX_VALUE);
+
+        // Auto-scroll to bottom when content changes
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) ->
+            scrollPane.setVvalue(1.0));
+
+        System.out.println("Dialog container initialized");
     }
 
     public void setNerpBot(NerpBot nerpBot) {
@@ -39,8 +55,32 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = nerpBot.getResponse(input);  // You need to implement this method
-        dialogContainer.getChildren().addAll(DialogBox.getUserDialog(input, userImage), DialogBox.getNerpBotDialog(response, botImage));
+        if (input.trim().isEmpty()) {
+            return; // Don't process empty messages
+        }
+
+        String response = nerpBot.getResponse(input);
+
+        dialogContainer.getChildren().addAll(
+            DialogBox.getUserDialog(input, userImage),
+            DialogBox.getNerpBotDialog(response, botImage)
+        );
         userInput.clear();
+
+        // Force scrolling to bottom
+        scrollPane.setVvalue(1.0);
+
+        // Close application if user types "bye"
+        if (input.trim().equalsIgnoreCase("bye")) {
+            // Add delay to allow seeing the goodbye message
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1500); // 1.5 second delay
+                    Platform.exit();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
     }
 }
