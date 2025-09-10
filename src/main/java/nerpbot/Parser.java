@@ -5,6 +5,7 @@ package nerpbot;
  */
 public class Parser {
     public static String getCommandWord(String input) {
+        assert input != null : "Input should not be null";
         return input.split(" ")[0];
     }
 

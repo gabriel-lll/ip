@@ -57,6 +57,7 @@ public class Storage {
         while ((line = br.readLine()) != null) {
             tasks.add(Task.fromSaveFormat(line));
         }
+        assert tasks != null : "Tasks should not be null";
         br.close();
         return tasks;
     }
