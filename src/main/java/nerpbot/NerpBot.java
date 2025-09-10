@@ -42,6 +42,8 @@ public class NerpBot {
             String commandArgs = Parser.getCommandArgs(input);
 
             switch (commandWord) {
+                case "help":
+                    return ui.showHelp();
                 case "bye":
                     return ui.showExit();
                 case "list":
@@ -84,5 +86,21 @@ public class NerpBot {
         } catch (Exception e) {
             return ui.showError(e.getMessage());
         }
+    }
+
+    /**
+     * Returns the welcome message when the bot is first loaded.
+     *
+     * @return The welcome message.
+     */
+    public String getWelcomeMessage() {
+        return ui.showWelcome();
+    }
+
+    /**
+     * Shows the help window.
+     */
+    public void showHelpWindow() {
+        ui.showHelpWindow();
     }
 }
