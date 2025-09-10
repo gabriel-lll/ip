@@ -14,7 +14,8 @@ import nerpbot.NerpBot;
  */
 public class Main extends Application {
 
-    private final NerpBot nerpBot = new NerpBot("data/nerpbot.txt");
+    private static final String FILE_PATH = "data/nerpbot.txt";
+    private final NerpBot nerpBot = new NerpBot(FILE_PATH);
 
     @Override
     public void start(Stage stage) {

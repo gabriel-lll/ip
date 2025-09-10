@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
 
         // Auto-scroll to bottom when content changes
         dialogContainer.heightProperty().addListener((observable, oldValue, newValue) ->
-            scrollPane.setVvalue(1.0));
+                scrollPane.setVvalue(1.0));
 
         System.out.println("Dialog container initialized");
     }
@@ -62,8 +62,8 @@ public class MainWindow extends AnchorPane {
         String response = nerpBot.getResponse(input);
 
         dialogContainer.getChildren().addAll(
-            DialogBox.getUserDialog(input, userImage),
-            DialogBox.getNerpBotDialog(response, botImage)
+                DialogBox.getUserDialog(input, userImage),
+                DialogBox.getNerpBotDialog(response, botImage)
         );
         userInput.clear();
 
