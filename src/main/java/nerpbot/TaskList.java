@@ -56,6 +56,7 @@ public class TaskList {
      * @throws IOException If saving to storage fails.
      */
     public String markTask(int idx) throws IOException {
+        assert idx >= 0 && idx < tasks.size() : "Index out of bounds";
         if (idx < 0 || idx >= tasks.size()) {
             return "That task number doesn't exist.";
         }
