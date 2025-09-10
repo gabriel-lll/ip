@@ -50,6 +50,12 @@ public class MainWindow extends AnchorPane {
 
     public void setNerpBot(NerpBot nerpBot) {
         this.nerpBot = nerpBot;
+
+        // Show welcome message
+        String welcomeMessage = nerpBot.getWelcomeMessage();
+        dialogContainer.getChildren().add(
+                DialogBox.getNerpBotDialog(welcomeMessage, botImage)
+        );
     }
 
     @FXML
@@ -81,6 +87,10 @@ public class MainWindow extends AnchorPane {
                     e.printStackTrace();
                 }
             }).start();
+        }
+
+        if (input.trim().equalsIgnoreCase("help")) {
+            nerpBot.showHelpWindow();
         }
     }
 }
