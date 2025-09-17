@@ -71,7 +71,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage)
         );
 
-        // AI Assisted error handling
+        // Used copilot to help implement error handling
         if (response.startsWith(NerpBot.ERROR_PREFIX)) {
             String errorMessage = response.substring(NerpBot.ERROR_PREFIX.length());
             dialogContainer.getChildren().add(

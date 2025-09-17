@@ -57,7 +57,7 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    // AI generated error dialog box styling
+    // Used github copilot claude sonnet 4.7 thinking to generate error dialog box styling
     public static DialogBox getNerpBotErrorDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
