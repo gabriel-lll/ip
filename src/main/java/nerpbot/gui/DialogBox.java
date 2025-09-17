@@ -56,4 +56,14 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
+    // AI generated error dialog box styling
+    public static DialogBox getNerpBotErrorDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.flip();
+        // Add error styling
+        db.setStyle("-fx-background-color: #ffeded; -fx-border-color: #ff6b6b; -fx-border-width: 2px; -fx-border-radius: 5px;");
+        db.dialog.setStyle("-fx-text-fill: #d32f2f; -fx-font-weight: bold;");
+        return db;
+    }
 }

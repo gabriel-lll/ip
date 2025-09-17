@@ -14,6 +14,7 @@ public class NerpBot {
     private final Storage storage;
     private final TaskList taskList;
     private final Ui ui;
+    public static final String ERROR_PREFIX = "☹ OOPS!!! ";
 
     public NerpBot(String filePath) {
         this.ui = new Ui();
@@ -84,7 +85,7 @@ public class NerpBot {
                     throw new NerpBotException("idk what that means.");
             }
         } catch (Exception e) {
-            return ui.showError(e.getMessage());
+            return ERROR_PREFIX + ui.showError(e.getMessage());
         }
     }
 

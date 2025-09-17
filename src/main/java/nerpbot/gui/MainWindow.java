@@ -68,9 +68,21 @@ public class MainWindow extends AnchorPane {
         String response = nerpBot.getResponse(input);
 
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getNerpBotDialog(response, botImage)
+                DialogBox.getUserDialog(input, userImage)
         );
+
+        // AI Assisted error handling
+        if (response.startsWith(NerpBot.ERROR_PREFIX)) {
+            String errorMessage = response.substring(NerpBot.ERROR_PREFIX.length());
+            dialogContainer.getChildren().add(
+                    DialogBox.getNerpBotErrorDialog(errorMessage, botImage)
+            );
+        } else {
+            dialogContainer.getChildren().add(
+                    DialogBox.getNerpBotDialog(response, botImage)
+            );
+        }
+
         userInput.clear();
 
         // Force scrolling to bottom
