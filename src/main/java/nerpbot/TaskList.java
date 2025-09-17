@@ -9,11 +9,22 @@ public class TaskList {
     private final ArrayList<Task> tasks;
     private final Storage storage;
 
+    /**
+     * Constructs an empty TaskList with the given storage.
+     *
+     * @param storage The storage handler for saving/loading tasks.
+     */
     public TaskList(Storage storage) {
         this.tasks = new ArrayList<>();
         this.storage = storage;
     }
 
+    /**
+     * Constructs a TaskList with the given tasks and storage.
+     *
+     * @param tasks   The initial list of tasks.
+     * @param storage The storage handler for saving/loading tasks.
+     */
     public TaskList(ArrayList<Task> tasks, Storage storage) {
         this.tasks = tasks;
         this.storage = storage;

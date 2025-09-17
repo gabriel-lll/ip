@@ -8,6 +8,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the HelpWindow. Displays in-app guidance and command usage.
+ */
 public class HelpWindow {
     @FXML
     private VBox helpContent;
@@ -15,6 +18,9 @@ public class HelpWindow {
     @FXML
     private Button closeButton;
 
+    /**
+     * Initializes the help window with command sections and descriptions.
+     */
     public void initialize() {
         // Add command sections to the help content
         addSection("General Commands",
@@ -34,6 +40,12 @@ public class HelpWindow {
                 "find <keyword> - Find tasks containing the keyword");
     }
 
+    /**
+     * Adds a section to the help window with a title and command items.
+     *
+     * @param title The section title.
+     * @param items The command descriptions.
+     */
     private void addSection(String title, String... items) {
         Label titleLabel = new Label(title);
         titleLabel.setFont(Font.font("System", FontWeight.BOLD, 14));
@@ -49,6 +61,9 @@ public class HelpWindow {
         }
     }
 
+    /**
+     * Closes the help window when the close button is clicked.
+     */
     @FXML
     private void closeHelp() {
         Stage stage = (Stage) closeButton.getScene().getWindow();

@@ -4,5 +4,4 @@ E | 0 | sleep hard | 2025-10-10 | 2025-10-12
 T | 0 | poopoo
 T | 1 | sleep
 T | 1 | pee a lot
-T | 0 | cs2103T
 T | 1 | cs2103T

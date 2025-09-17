@@ -16,6 +16,11 @@ public class NerpBot {
     private final Ui ui;
     public static final String ERROR_PREFIX = "☹ OOPS!!! ";
 
+    /**
+     * Constructs a NerpBot instance with the specified file path for storage.
+     *
+     * @param filePath The path to the storage file.
+     */
     public NerpBot(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
