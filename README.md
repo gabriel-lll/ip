@@ -1,26 +1,65 @@
-# Duke project template
+# NerpBot 🤖
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+NerpBot is a **desktop task manager chatbot** built with Java and JavaFX.  
+It helps users manage todos, deadlines, and events via a clean graphical interface — all while chatting with a friendly
+bot!
 
-## Setting up in Intellij
+---
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+## 📸 Screenshot
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+<img src="docs/Ui.png" width="300" alt="description">
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+---
+
+## 🚀 Features
+
+- [x] Add tasks: `todo`, `deadline`, `event`
+- [x] Mark and unmark tasks
+- [x] Delete tasks
+- [x] Search tasks by keyword
+- [x] Save and load tasks from file (`nerpbot.txt`)
+- [x] GUI built with JavaFX and FXML
+- [x] Auto-scrolling dialog with user & bot images
+
+---
+
+## 🛠 Technologies Used
+
+- Java 17
+- JavaFX 17
+- Gradle
+- JUnit 5 (for testing)
+
+---
+
+## 🧰 Setup Instructions
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/nerpbot.git
+   cd nerpbot
+    ```
+2. Open in IntelliJ IDEA
+   Import as a Gradle project and ensure JavaFX SDK is linked correctly.
+3. Run the application:
+    ```bash
+    ./gradlew run
+    ```
+4. Build the JAR:
+    ```bash
+    ./gradlew clean shadowJar
+    ```
+5. Run the JAR:
+    ```bash
+    java -jar build/libs/nerpbot.jar
+    ```
+
+> 💡 If the JAR file is under 5MB, JavaFX is likely not bundled. Refer to SE-EDU JavaFX packaging guide to fix it.
+
+---
+
+## 🙌 Acknowledgements
+
+- JavaFX tutorial from SE-EDU
+- Duke Chatbot (CS2103T)
